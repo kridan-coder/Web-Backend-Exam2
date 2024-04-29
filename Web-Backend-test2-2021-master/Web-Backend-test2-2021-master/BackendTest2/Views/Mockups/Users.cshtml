@@ -1,0 +1,151 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (true) //пользователь админ
+{
+    <div class="row">
+        <div class="col-12">
+            <h1>Пользователи</h1>
+
+            <form method="get">
+                <div class="form-row">
+                    <div class="form-group col-6 col-md-3">
+                        <input class="form-control" placeholder="Имя" type="search" />
+                    </div>
+                    <div class="form-group col-6 col-md-3">
+                        <input class="form-control" placeholder="Email" type="search" />
+                    </div>
+                    <div class="form-group col-10 col-md-5">
+                        <select multiple="multiple" class="form-control" id="rolesSelect">
+                            <option>Администратор</option>
+                            <option>Преподаватель</option>
+                            <option>Студент</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-2 col-md-1">
+                        <button type="submit" class="btn btn-outline-secondary button-icon w-100" data-toggle="tooltip" data-title="Найти">
+                            <i class="fas fa-search fa-1x text-dark hand_cursor"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            @if (!true) //Нет пользователей
+            {
+                <p class="font-italic text-muted text-center">Нет пользователей</p> 
+            }
+            else //есть
+            {
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                Полное имя
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Роль
+                            </th>    
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Пример юзера-->
+                        <tr>
+                            <td class="align-middle">
+                                <a class="text-dark">
+                                    %Фио_юзера%
+                                </a>
+                            </td>
+                            <td class="align-middle">
+                                <a href="mailto:%email%" class="text-dark">
+                                    %Email%
+                                </a>
+                            </td>
+                            <td class="align-middle">                                
+                                <span>%Роль%</span>
+                            </td>
+                            <td class="align-middle">
+                                <a>
+                                    <i data-toggle="tooltip" data-title="Редактировать" class="fas fa-pencil-alt fa-lg text-muted hand_cursor"></i>
+                                </a>    
+                                <a>
+                                    <i data-toggle="tooltip" data-title="Удалить" class="fas fa-trash-alt fa-lg text-danger hand_cursor"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <!--/пример юзера-->
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+}
+else
+{ 
+//ошибка про нет доступа
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#userSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите пользователей',
+            allowClear: true
+        });
+
+        $("#prLangsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите языки программирования',
+            allowClear: true
+        });
+
+        $("#topicsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите темы',
+            allowClear: true
+        });
+        $("#contestsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите контесты',
+            allowClear: true
+        });
+
+        $("#groupsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите группы',
+            allowClear: true
+        });
+
+        $("#taskSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите задачи',
+            allowClear: true,
+            closeOnSelect: false
+        });
+
+        $("#classesSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите классы',
+            allowClear: true
+        });
+
+        $("#rolesSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите роли',
+            allowClear: true
+        });
+
+
+        $("#subdivisionsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите подразделения',
+            allowClear: true
+        });
+    });
+</script>

@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Отправить</h1>
+
+<h4>Решение задачи "%Имя_задачи%"</h4> 
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Исходный код</label>
+                <!-- Editor -->
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="navbar navbar-dark bg-dark">
+                                <div>
+                                    <i class="fas fa-compress text-white mr-2" data-toggle="tooltip" onclick="OpenEditorFullScreen()"></i>
+                                    <i class="fas fa-cog text-white mr-2" data-toggle="tooltip" onclick="OpenSettingsMenu()"></i>
+                                    <i class="fas fa-magic text-white" data-toggle="tooltip" onclick="PasteExample()"></i>
+                                </div>
+                            </div>
+                            <div id="editor" style="border: none;"></div>
+                        </div>
+                    </div>
+                </div>
+                <script src="~/lib/ace/ace.js"></script>
+                <script src="~/js/ace/configEditor.js"></script>
+                <script src="~/lib/ace/examples.js"></script>
+
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Язык программирования</label>
+                <select class="form-control prLangSelect" onchange="UpdateSyntaxHighlighter()">
+                    <option>C#</option>
+                    <option>C++</option>
+                    <option>Java</option>
+                </select>
+            </div>          
+            
+            <div class="form-group d-flex justify-content-center">
+                <input type="submit" value="Отправить" class="btn btn-primary" id="sendingButton" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>$(function () {
+            $('#submitSourceCodeForm').submit(function () {
+                $('[name="SourceCode"]').val(GetSourceCode());
+                $('#sendingButton').prop('disabled', true);
+                return true;
+            });
+        });</script>
+}

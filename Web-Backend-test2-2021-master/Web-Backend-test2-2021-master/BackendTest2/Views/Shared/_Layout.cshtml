@@ -1,0 +1,231 @@
+﻿
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @*<title>@ViewData["Title"] - CodeHedgehog</title>*@
+    <title>CodeHedgehog</title>
+    <link href="/img/favicon.ico" rel="shortcut icon" runat="server" type="image/x-icon" />
+    <link href="/img/favicon.ico" rel="icon" runat="server" type="image/ico" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/select2.min.css" />
+    <link rel="stylesheet" href="~/css/all.css" />
+    <link rel="stylesheet" href="~/css/brands.css" />
+    <link rel="stylesheet" href="~/css/fontawesome.css" />
+    <link rel="stylesheet" href="~/css/regular.css" />
+    <link rel="stylesheet" href="~/css/solid.css" />
+    <link rel="stylesheet" href="~/css/toastr.min.css" />
+    <link rel="stylesheet" href="~/css/ace.css" /> @*This part for source code editor*@
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand navbar-light bg-white border static-top justify-content-between">
+
+        <div>
+            <a class="navbar-brand mr-1">
+                <img class="img" src="/img/black_logo.svg">
+            </a>
+        </div>
+
+        <!-- Navbar -->
+        <div class="form-inline">
+            <!-- Залогинен -->
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <button class="btn btn-link btn-sm  text-dark order-1 order-sm-0" id="sidebarToggle" href="#">
+                    <i class="fas fa-bars"></i>
+                </button>
+            }
+            <!-- /Залогинен -->
+            <ul class="navbar-nav form-inline ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <partial name="_SelectLanguagePartial" />
+                </li>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle fa-fw"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right zIndex1021" aria-labelledby="userDropdown">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            var usr = await UserManager.GetUserAsync(User);
+                            var name = usr?.UserName;
+                            <!-- Залогинен -->
+                        <a class="dropdown-item">
+                            <!-- Никуда не ведёт -->
+                            @name
+                        </a>
+
+                            <a class="dropdown-item">
+                                Настройки <!-- страница с редактированием профиля, Identity -->
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="dropdown-item form-inline">
+                                <button type="submit" class="nav-link btn btn-link text-dark p-0 w-100 text-left">Выйти</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Login">
+                                Войти
+                            </a>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Register">
+                                Зарегистрироваться
+                            </a>
+                        }
+                        <!-- /Залогинен -->
+                        <!-- Не Залогинен -->
+                        <!--
+
+    -->
+                        <!-- /Не Залогинен -->
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <!-- Залогинен -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+        <ul class="sidebar navbar-nav bg-light border wordWrap_break">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-check-square"></i>
+                    <span>Проверка</span>
+                </a>
+            </li>
+
+            <!-- Админ -->
+            <li class="nav-item">
+                <a class="nav-link">
+                    <i class="fas fa-sitemap"></i>
+                    <span>Темы</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="HogTasks" asp-action="Index">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Задачи</span>
+                </a>
+            </li>
+            @if (User.IsInRole(ApplicationRoles.Administrators))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Account" asp-action="Index">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Пользователи</span>
+                    </a>
+                </li>
+            }
+            <!-- /Админ -->
+        </ul>
+        <!-- /Залогинен -->
+        }
+
+        <div id="content-wrapper">
+            <!-- Залогинен -->
+
+            <div class="container-fluid mb-3">
+                @RenderBody()
+            </div>
+            <!-- /Залогинен -->
+            <!-- НЕ Залогинен -->
+            <!--
+        <div class="container mb-3">
+            /*RenderBody()*/
+        </div>
+            -->
+            <!-- /НЕ Залогинен -->
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            <footer class="sticky-footer border">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>
+                            Copyright © CodeHedgehog -
+                            <a href="http://www.tsu.ru/" target="_blank" class="text-dark">TSU</a>
+                            - @DateTime.Now.Year
+                        </span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- /.content-wrapper -->
+    </div>
+
+
+    <!-- /#wrapper -->
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/toastr.min.js"></script>
+    <script src="~/js/select2.min.js"></script>
+    <script src="~/js/all.js"></script>
+    <script src="~/js/brands.js"></script>
+    <script src="~/js/fontawesome.js"></script>
+    <script src="~/js/regular.js"></script>
+    <script src="~/js/solid.js"></script>
+    <script src="/js/ckeditor.js"></script>
+    <script src="~/js/sb-admin.min.js"></script>
+
+    <script src="~/js/views/endpoints.js"></script>
+    <script src="~/js/views/modalEvents.js"></script>
+
+
+
+    <script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        var SetOnChangeInputFileName = function () {
+            $(".custom-file-input").on("change",
+                function () {
+                    if (this.files.length > 0) {
+                        var attach_size = 10 * 1024 * 1024;  //10 MB
+                        var attach_file = this.files[0];
+                        if (attach_file.size > attach_size) {
+                            $(this).siblings('.inputFileError').html('File size exceeded');
+                            while (this.files.length) {
+                                $(this).val(null);
+                            }
+                        }
+                        else {
+                            var fileName = $(this).val().split("\\").pop();
+                            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                        }
+                    }
+                });
+        };
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip({ trigger: "hover" });
+
+            $(".statesSelect").select2({
+                width: 'resolve',
+                allowClear: true
+            });
+
+            SetOnChangeInputFileName();
+        });
+    </script>
+
+</body>
+</html>

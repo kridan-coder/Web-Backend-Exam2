@@ -1,0 +1,336 @@
+﻿* {
+    font-family: 'Manrope', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #ffffff;
+    --gray1: #efefef;
+    --gray1-darken: #dddddd;
+    --gray2: #eaeaea;
+    --gray3: #4f4f4f;
+    --primary-blue: #218dff;
+    --primary-blue-darken: #1e64dd;
+    --red: #f80c2e;
+}
+
+.page-container {
+    min-height: 100vh;
+    min-width: 340px;
+}
+
+.page-row {
+    min-height: inherit;
+}
+
+.image-block {
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 30px 80px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-block-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.image-block .image-block-header .site-logo {
+    height: 80px;
+}
+
+.image-block .image-block-header .language-switcher-link {
+    color: var(--white);
+    font-weight: 600;
+}
+
+    .image-block .image-block-header .language-switcher-link:not(:last-child) {
+        margin-right: 15px;
+    }
+
+    .image-block .image-block-header .language-switcher-link:hover {
+        color: var(--white);
+        text-decoration: underline;
+    }
+
+    .image-block .image-block-header .language-switcher-link.selected {
+        text-decoration: underline;
+    }
+
+.image-block .description-container {
+    margin-bottom: 30px;
+}
+
+    .image-block .description-container .title {
+        display: block;
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 56px;
+        color: var(--white);
+    }
+
+    .image-block .description-container .subtitle {
+        display: block;
+        color: var(--white);
+        font-size: 24px;
+        font-weight: 300;
+        margin-top: 30px;
+    }
+
+    .image-block .description-container .learn-more-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        height: 40px;
+        margin-top: 30px;
+        padding: 0 30px;
+        background-color: var(--primary-blue);
+        color: var(--white);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+
+        .image-block .description-container .learn-more-link:hover {
+            background-color: var(--primary-blue-darken);
+        }
+
+.image-block .copyright-text {
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.login-card-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 80px 25px;
+    align-items: stretch;
+    max-width: 450px;
+}
+
+    .login-card-container .login-title {
+        font-size: 36px;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+
+    .login-card-container .login-input {
+        outline: none;
+        border: none;
+        background-color: var(--gray1);
+        width: 100%;
+        font-size: 16px;
+        height: 40px;
+        padding: 0 15px;
+        margin-bottom: 20px;
+    }
+
+        .login-card-container .login-input:focus {
+            border-left: 2px solid var(--primary-blue);
+            padding: 0 10px 0 13px;
+        }
+
+        .login-card-container .login-input.error {
+            border: 1px solid var(--red);
+            margin-bottom: 0;
+        }
+
+        .error-text {
+            display: block;
+            color: var(--red);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .login-card-container .login-button {
+                border: none;
+                outline: none;
+                width: 100%;
+                height: 40px;
+                margin-top: 10px;
+                background-color: var(--primary-blue);
+                color: var(--white);
+                transition: background-color 0.3s ease-in-out;
+            }
+
+        .login-card-container .login-button:hover {
+            background-color: var(--primary-blue-darken);
+        }
+
+    .login-card-container .remember-me-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+        .login-card-container .remember-me-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .login-card-container .remember-me-label .checkmark {
+            content: "";
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-color: var(--gray2);
+            margin-right: 10px;
+            position: relative;
+        }
+
+            .login-card-container .remember-me-label .checkmark:before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 100%;
+                left: 0;
+                top: 0;
+                background-color: var(--primary-blue);
+                transition: width 0.2s ease-in-out;
+            }
+
+        .login-card-container .remember-me-label input[type="checkbox"]:checked ~ .checkmark:before {
+            width: 100%;
+        }
+
+        .login-card-container .remember-me-label .checkmark:after {
+            content: "";
+            display: block;
+            width: 12px;
+            height: 7px;
+            border-bottom: 3px solid var(--white);
+            border-left: 3px solid var(--white);
+            transform: rotate(-45deg);
+            position: relative;
+            top: 4px;
+            left: 3px;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .login-card-container .remember-me-label input[type="checkbox"]:checked ~ .checkmark:after {
+            opacity: 1;
+        }
+
+    .login-card-container .tsu-account-login-button {
+        display: flex;
+        width: 100%;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--gray1);
+        text-decoration: none;
+        color: var(--primary-blue);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+        .login-card-container .tsu-account-login-button:hover {
+            text-decoration: none;
+            color: var(--primary-blue);
+            background-color: var(--gray1-darken);
+        }
+
+        .login-card-container .tsu-account-login-button .button-icon {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+    .login-card-container .login-or-separator {
+        display: flex;
+        text-align: center;
+        font-size: 14px;
+        color: var(--gray3);
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+    }
+
+    .login-card-container .login-link {
+        color: var(--primary-blue);
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+        .login-card-container .login-link:not(:last-child) {
+            margin-right: 15px;
+        }
+
+@media (max-width: 1199px) {
+    .image-block {
+        padding: 30px 60px;
+    }
+
+        .image-block .description-container .title {
+            font-size: 36px;
+            line-height: 40px;
+        }
+
+        .image-block .description-container .subtitle {
+            font-size: 18px;
+        }
+}
+
+@media (max-width: 991px) {
+    .image-block .image-block-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+        .image-block .image-block-header .site-logo {
+            align-self: center !important;
+            margin-bottom: 20px;
+        }
+
+    .image-block {
+        padding: 30px 30px;
+    }
+
+        .image-block .description-container .title {
+            font-size: 26px;
+            line-height: 30px;
+        }
+
+        .image-block .description-container .subtitle {
+            font-size: 16px;
+        }
+}
+
+
+form .select2-container .select2-selection--single {
+    height: 40px;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-family: 'Manrope', sans-serif;
+}
+
+form .select2-container--default .select2-selection--single .select2-selection__arrow {
+    padding-top: 35px;
+}
+
+form .select2-container--default .select2-selection--single {
+    outline: none;
+    border: none;
+    border-radius: 0;
+    background-color: var(--gray1);
+    font-size: 16px;
+    height: 40px;
+}
+
+.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+
+form .select2-container .select2-selection--single :focus {
+    border-left: 2px solid var(--primary-blue);
+    padding: 0 10px 0 13px;
+}

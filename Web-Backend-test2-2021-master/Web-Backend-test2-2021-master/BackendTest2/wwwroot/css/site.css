@@ -1,0 +1,184 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.hand_cursor {
+    cursor: pointer;
+}
+
+.class-card {
+    height: 15rem;
+}
+
+.class-card .card-header h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.class-card .card-footer {
+    padding: .75rem 1.25rem;
+    background-color: white;
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.class-card a:hover {
+    text-decoration: none;
+}
+
+
+.rejected_bg {
+    background-color: #ffcccc;
+}
+
+.pending_bg {
+    background-color: #fffdb4;
+}
+
+.contact_bg {
+    background-color: #99ccff;
+}
+
+.ok_bg {
+    background-color: #cbebc6;
+}
+
+.comment_block {
+    min-height: 2rem;
+    max-height: 8rem;
+    overflow-y: auto;
+}
+
+.gray_pager {
+    padding: .4rem .7rem !important;
+    color: #6c757d !important;
+    border-color: !important;
+}
+
+.gray_pager:hover {
+    background-color: #e9ecef!important;
+    color: #6c757d!important;
+    border-color: #6c757d!important;
+}
+
+.page-item.active .gray_pager {
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+
+.zIndex1021 {
+    z-index: 1021 !important;
+}
+
+.wordWrap_break {
+    word-wrap: break-word;
+}
+
+
+.collapse-title.collapsed .fa-caret-up,
+.collapse-title .fa-caret-down {
+    display: none;
+}
+
+.collapse-title.collapsed .fa-caret-down,
+.collapse-title .fa-caret-up {
+    display: inline-block;
+}
+
+.form-group .select2-container .select2-selection--single {
+    height: calc(1.5em + .75rem + 2px);
+    padding-top: .15rem;
+}
+
+.form-group .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: .15rem;
+}
+
+.form-group .select2-container--default .select2-selection--single {
+    border: 1px solid #ced4da;
+}
+
+.form-group .select2-container--default.select2-container--disabled .select2-selection--single {
+    background-color: #e9ecef;
+}
+
+.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+
+.danger-disable-color {
+    color: #e87c87;
+}

@@ -1,0 +1,6 @@
+﻿.ace_editor {
+    border: 1px solid lightgray;
+    margin: auto;
+    max-width: 100%;
+    min-height: 45vh; /*TODO: Change to another value*/
+}

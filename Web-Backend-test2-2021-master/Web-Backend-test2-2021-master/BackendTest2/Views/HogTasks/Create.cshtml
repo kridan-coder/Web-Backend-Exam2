@@ -1,0 +1,160 @@
+﻿
+@if (true) //Админ или преподаватель
+{
+    <h1>Создать</h1>
+    <h4>Задача</h4>
+    <hr />
+    <div class="row">
+        <div class="col-12">
+            <form class="mt-2">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h6>Коротко</h6>
+
+                <div class="form-row">
+                    <div class="col-12 col-md-6 form-group">
+                        <input placeholder="Стоимость" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-10 col-md-6">
+                        <select name="Contests" multiple="multiple" class="form-control" id="contestsSelect">
+                            <option>Тема 1</option>
+                            <option>Тема 2</option>
+                            <option>Тема 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h6>Условие задачи</h6>
+
+                <div class="form-group">
+                    <label class="control-label">Имя</label>
+                    <input class="form-control" />
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-12 col-md-6 form-group">
+                        <label class="control-label">Входной файл</label>
+                        <input type="file" class="form-control" placeholder="stdin" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-md-6 form-group">
+                        <label class="control-label">Выходной файл</label>
+                        <input type="file" class="form-control" placeholder="stdout" />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Описание</label>
+                    <textarea class="form-control CKEditorObject" rows="5"></textarea>
+                    <span class="text-danger"></span>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <input type="submit" value="Создать" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a>Назад к списку задач</a>
+    </div>
+}
+else
+{
+    //нет доступа
+}
+
+<script>
+    $(function () {
+        $('.CKEditorObject').each(function (index, element) {
+            ClassicEditor
+                .create(element,
+                    {
+                        toolbar: {
+                            items: [
+                                'heading',
+                                '|',
+                                'bold',
+                                'italic',
+                                'underline',
+                                'removeFormat',
+                                'subscript',
+                                'superscript',
+                                '|',
+                                'fontFamily',
+                                'fontSize',
+                                'fontColor',
+                                '|',
+                                'alignment',
+                                'indent',
+                                'outdent',
+                                '|',
+                                'horizontalLine',
+                                'bulletedList',
+                                'numberedList',
+                                '|',
+                                'link',
+                                'code',
+                                'codeBlock',
+                                'insertTable',
+                                'blockQuote',
+                                'mediaEmbed',
+                                '|',
+                                'undo',
+                                'redo'
+                            ]
+                        },
+                        language: 'en',
+                        image: {
+                            toolbar: [
+                                'imageTextAlternative',
+                                'imageStyle:full',
+                                'imageStyle:side'
+                            ]
+                        },
+                        table: {
+                            contentToolbar: [
+                                'tableColumn',
+                                'tableRow',
+                                'mergeTableCells',
+                                'tableCellProperties',
+                                'tableProperties'
+                            ]
+                        },
+                        licenseKey: ''
+                    });
+        });
+    });
+</script>
+
+<script>
+    var UpdateTestCount = function () {
+            var testBankName = $("#testBankTaskSelect").val();
+            var testCount = $("#" + testBankName).val();
+            $(".testCountInput").val(testCount);
+        };
+
+
+        $("#testBankTaskSelect").change(function () {
+            UpdateTestCount();
+        });
+
+        $(document).ready(function () {
+            UpdateTestCount();
+            $("#topicsSelect").select2({
+                width: 'resolve',
+                placeholder: 'Выберите темы',
+                allowClear: true
+            });
+            $("#contestsSelect").select2({
+                width: 'resolve',
+                placeholder: 'Выберите темы',
+                allowClear: true
+            });
+        });
+
+
+</script>
+

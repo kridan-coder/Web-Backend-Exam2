@@ -1,0 +1,105 @@
+﻿@using BackendTest2.Services
+
+@model BackendTest2.Models.ViewModels.UsersFilterViewModel
+
+@inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+
+@inject IUserPermissionsService userPermissions
+
+@if (User.IsInRole(ApplicationRoles.Administrators)) //пользователь админ
+{
+    <div class="row">
+        <div class="col-12">
+            <h1>Пользователи</h1>
+
+            <form asp-action="Index">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-row">
+                    <div class="form-group col-6 col-md-3">
+                        <input asp-for="Name" class="form-control" type="search" />
+                    </div>
+                    <div class="form-group col-6 col-md-3">
+                        <input asp-for="Email" class="form-control"  type="search"/>
+                    </div>
+                    <div class="form-group col-10 col-md-5">
+                        <select class="form-control" asp-for="Role">
+                            <option value="Everyone">Кто угодно</option>
+                            <option value="Administrators">Администратор</option>
+                            <option value="Teachers">Преподаватель</option>
+                            <option value="Students">Студент</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-2 col-md-1">
+                        <button type="submit" class="btn btn-outline-secondary button-icon w-100" data-toggle="tooltip" data-title="Найти">
+                            <i class="fas fa-search fa-1x text-dark hand_cursor"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            @if (!UserManager.Users.Any()) //Нет пользователей
+            {
+                <p class="font-italic text-muted text-center">Нет пользователей</p>
+            }
+            else //есть
+            {
+
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                Полное имя
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Роль
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Пример юзера-->
+                        @for (int i = 0; i < ViewBag.Users.Count; i++)
+                        {
+                            <tr>
+                                <td class="align-middle">
+                                    <a class="text-dark">
+                                        @ViewBag.Users[i].UserName
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <a href="mailto:%email%" class="text-dark">
+                                        @ViewBag.Users[i].Email
+                                    </a>
+                                </td>
+                                <td class="align-middle">
+                                    <span>@ViewBag.Roles[i]</span>
+                                </td>
+                                <td class="align-middle">
+                                    <a>
+                                        <i data-toggle="tooltip" data-title="Редактировать" class="fas fa-pencil-alt fa-lg text-muted hand_cursor"></i>
+                                    </a>
+                                    @if (await userPermissions.GetCurrentUserId() != ViewBag.Users[i].Id)
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@ViewBag.Users[i].Id">
+                                            <i data-toggle="tooltip" data-title="Удалить" class="fas fa-trash-alt fa-lg text-danger hand_cursor"></i>
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                        <!--/пример юзера-->
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <text>Access denied.</text>
+}

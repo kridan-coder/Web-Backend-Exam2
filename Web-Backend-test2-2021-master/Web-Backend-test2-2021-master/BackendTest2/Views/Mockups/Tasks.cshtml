@@ -1,0 +1,250 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="row">
+    <div class="col-12">
+        <h1>Задачи</h1>
+    </div>
+    <div>
+        <h4 class="ml-3">Баллов набрано: %всего баллов%</h4>
+    </div>
+</div>
+
+<form method="get">
+    <div class="form-row">
+        <div class="form-group col-12 col-md-5">
+            <input name="Name" value="" class="form-control" placeholder="Название" type="search" />
+        </div>
+        <div class="form-group col-10 col-md-6">
+            <select name="Contests" multiple="multiple" class="form-control" id="contestsSelect">
+                <option>Тема 1</option>
+                <option>Тема 2</option>
+                <option>Тема 3</option>
+            </select>
+        </div>
+        <div class="form-group col-2 col-md-1">
+            <button type="submit" class="btn btn-outline-secondary button-icon w-100 " data-toggle="tooltip" data-title="Искать">
+                <i class="fas fa-search fa-1x text-dark hand_cursor"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-12">
+        @if (!true) //Нет задач
+        {
+            <p class="font-italic text-muted text-center">Отсутствуют задачи</p>
+        }
+        else // есть задачи
+        {
+            <table class="table table-responsive-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>
+                            <span>Название</span>
+                        </th>
+                        <th>
+                            Тема
+                        </th>
+                        <th>
+                            Баллы
+                        </th>
+                        <th>
+                            Постмодерация
+                        </th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--Задача - пример-->
+                    <tr>
+                        <th scope="row" class="align-middle" data-toggle="tooltip" data-title="Не решено">
+                            1
+                        </th>
+                        <td class="align-middle">
+                            <a class="text-dark" target="_blank">
+                                %Имя_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+
+                            <a class="text-dark" target="_blank">
+                                %Тема_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            2
+                        </td>
+                        <td class="align-middle">
+                            <input class="check-box" disabled="disabled" type="checkbox">
+                        </td>
+
+                        <td class="align-middle pt-1 pb-1 text-center">
+                            <a class="btn btn-sm btn-outline-secondary mb-1">
+                                Отправить решение
+                            </a><br />
+                            @if (true) //админ
+                            {
+                                <a class="btn btn-sm btn-outline-secondary mb-1">
+                                    Подробности
+                                </a><br />
+                                <button class="btn btn-sm btn-outline-danger mb-1">Удалить</button>
+                            }
+                        </td>
+                    </tr>
+
+                    <!--Задача - пример-->
+                    <tr>
+                        <th scope="row" class="align-middle" data-toggle="tooltip" data-title="Не решено">
+                            2
+                        </th>
+                        <td class="align-middle">
+                            <a class="text-dark" target="_blank">
+                                %Имя_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+
+                            <a class="text-dark" target="_blank">
+                                %Тема_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            2
+                        </td>
+                        <td class="align-middle">
+                            <input class="check-box" disabled="disabled" type="checkbox" checked>
+                        </td>
+
+                        <td class="align-middle pt-1 pb-1 text-center">
+                            <a class="btn btn-sm btn-outline-secondary mb-1">
+                                Отправить решение
+                            </a><br />
+                            @if (true) //админ
+                            {
+                                <a class="btn btn-sm btn-outline-secondary mb-1">
+                                    Подробности
+                                </a><br />
+                                <button class="btn btn-sm btn-outline-danger mb-1">Удалить</button>
+                            }
+                        </td>
+                    </tr>
+
+                    <!--Задача - пример-->
+                    <tr>
+                        <th scope="row" class="align-middle" data-toggle="tooltip" data-title="Не решено">
+                            3
+                        </th>
+                        <td class="align-middle">
+                            <a class="text-dark" target="_blank">
+                                %Имя_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+
+                            <a class="text-dark" target="_blank">
+                                %Тема_задачи%
+                            </a>
+                        </td>
+                        <td class="align-middle">
+                            4
+                        </td>
+                        <td class="align-middle">
+                            <input class="check-box" disabled="disabled" type="checkbox">
+                        </td>
+
+                        <td class="align-middle pt-1 pb-1 text-center">
+                            <a class="btn btn-sm btn-outline-secondary mb-1">
+                                Отправить решение
+                            </a><br />
+                            @if (true) //админ
+                            {
+                                <a class="btn btn-sm btn-outline-secondary mb-1">
+                                    Подробности
+                                </a><br />
+                                <button class="btn btn-sm btn-outline-danger mb-1">Удалить</button>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>}
+
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#userSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите пользователей',
+            allowClear: true
+        });
+
+        $("#prLangsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите языки программирования',
+            allowClear: true
+        });
+
+        $("#topicsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите темы',
+            allowClear: true
+        });
+        $("#contestsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите темы',
+            allowClear: true
+        });
+
+        $("#groupsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите группы',
+            allowClear: true
+        });
+
+        $("#taskSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите задачи',
+            allowClear: true,
+            closeOnSelect: false
+        });
+
+        $("#classesSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите классы',
+            allowClear: true
+        });
+
+        $("#rolesSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите роли',
+            allowClear: true
+        });
+
+
+        $("#subdivisionsSelect").select2({
+            width: 'resolve',
+            placeholder: 'Выберите подразделения',
+            allowClear: true
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var selectedContests = [];
+        for (var i = 0; i < $(".contest").length; i++) {
+            selectedContests.push($(".contest")[i].value);
+        }
+        if (selectedContests.length != 0) {
+            $('#contestsSelect').val(selectedContests).trigger("change");
+        }
+    });</script>

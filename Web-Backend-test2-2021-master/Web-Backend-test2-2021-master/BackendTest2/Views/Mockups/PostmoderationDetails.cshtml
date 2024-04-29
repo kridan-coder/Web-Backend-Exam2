@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (true) //админ или преподаватель
+{
+    <div class="row">
+        <div class="col-12">
+            <a>
+                <h3>%Имя_задания%</h3>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="text-muted">
+                %Дата-время отправки% %Автор решения%                                 
+            </p>          
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="=card-body mt-3 mb-3">
+                    <!-- Editor -->
+                    <div class="">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="navbar navbar-dark bg-dark">
+                                    <div>
+                                        <i data-toggle="tooltip"  class="fas fa-compress text-white mr-2" onclick="OpenEditorFullScreen()"></i>
+                                        <i data-toggle="tooltip"  class="fas fa-cog text-white" onclick="OpenSettingsMenu()"></i>
+                                    </div>
+                                </div>
+                                <pre name="code" id="editor" style="border: none;">#include <iostream>...</pre>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="~/lib/ace/ace.js"></script>
+                    <script src="~/js/ace/configViewer.js"></script>
+                </div>
+            </div>
+        </div>        
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>
+                        Вердикт тестирования:
+                        <span class="text-success font-weight-bold">Ok</span>
+                    </h5>
+                </div>
+                <div class="card-body">                   
+   
+                    <form>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label class="control-label">Вердикт учителя</label>
+                            <select class="form-control">
+                                <option>OK</option>
+                                <option selected>Pending</option>
+                                <option>Declined</option>
+                            </select>
+                            <span class="text-danger"></span>
+                        </div>
+                        
+                        <div class="d-flex form-group justify-content-center">
+                            <input type="submit" value="Сохранить" class="btn btn-primary" />
+                        </div>                       
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else
+            {
+                //нет прав
+            }
+
